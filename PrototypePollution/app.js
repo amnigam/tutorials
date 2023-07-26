@@ -1,6 +1,7 @@
 const express = require('express'); 
 const path = require('path'); 
 const fs = require('fs'); 
+const { hostname } = require('os');
 
 const app = express();
 app.set('view engine', 'pug'); 
@@ -11,7 +12,11 @@ const data = JSON.parse(fs.readFileSync(`${__dirname}/public/planets.txt`, { enc
 console.log(data);
 
 app.get('/', (req, res) => {
-    res.render('main'); 
+    const paramsObj = req.params; 
+    console.log(`Parameters Object: `, paramsObj); 
+    res.render('main', {
+        ua: req.headers['user-agent']
+    }); 
 })
 
 app.get('/planet/position/:pos', (req,res) => {
@@ -20,8 +25,17 @@ app.get('/planet/position/:pos', (req,res) => {
         return; 
     }
 
+    // const headers = JSON.parse(req.headers); 
+    console.log(req.headers); 
+    console.log(req.hostname); 
+
     const pos = req.params.pos; 
     const x = data[pos-1].name; 
+    const userHeader = req.headers['x-someheader']; 
+    res.set( {
+        "X-SomeHeader": userHeader
+    }
+    ); 
     res.send(x); 
 
 })
