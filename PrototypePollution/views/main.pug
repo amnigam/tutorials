@@ -7,7 +7,12 @@ html
         .user User Details 
             User-Agent= ua 
         .fetchData 
-            input(type="text", name="form") 
+            //- input(type="text", name="headerName", id="headerName") 
+            label(for="headerVal") Header Value 
+            input(type="text", name="headerVal", id="headerVal") 
+            br 
+            label(for="bodyData") Body Data 
+            input(type="text", name="bodyData", id="bodyData") 
         p Below Button Fetches data from API. 
         br 
         button FETCH 

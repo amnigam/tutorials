@@ -1,7 +1,9 @@
 const btn = document.querySelector('button'); 
 const body = document.body; 
 const user = document.querySelector('.user'); 
-const inp = document.querySelector('input'); 
+const reqData = document.getElementById('bodyData'); 
+// const inp1 = document.getElementById('headerName');
+const inp2 = document.getElementById('headerVal'); 
 
 function getRandomPos() {
     let a = Math.ceil(1);   //Lower Count of position
@@ -14,39 +16,63 @@ btn.addEventListener('click', () => {
     let x = getRandomPos(); 
     // let url = `http:/localhost:3000/planet/position/${x}`; 
     let url = `planet/position/${x}`;
-    // const fetchPollution = inp.innerText; 
-    const fetchPollution = inp.value; 
-    console.log(fetchPollution);
-    let userAgent = ''; 
+    // const headerName = inp1.value; 
+    const headerVal = inp2.value; 
+    const bodyData = reqData.value; 
+
+    let reflectedHeader = ''; 
     let header = {}; 
 
-    fetchPollution? header = {
+    headerVal? header = {
         "Content-type": "application/text",
-        "X-SomeHeader": fetchPollution
+        "X-SomeHeader": `${headerVal}`
     } : header = {
         "Content-type": "application/text"
     }; 
 
     console.log(url); 
-    fetch(url, {
-        headers: header
-    })
-    .then( (response) => {
-        userAgent = response.headers.get('X-SomeHeader'); 
-        return response.text()
-    })
-    .then( (data) => {
-        const userDiv = document.createElement('div'); 
-        userDiv.innerHTML = userAgent;
-        // body.append(userDiv); 
-        user.append(userDiv); 
+    // console.log(header); 
+    console.log(bodyData); 
 
-        const outDiv = document.createElement('div'); 
-        outDiv.innerHTML = data;
-        console.log(data); 
-        body.append(outDiv); 
-    })
-    .catch ( (err) => {
-        console.log(err); 
-    })
+    if (!bodyData) {
+        fetch(url, {
+            headers: header
+        })
+        .then( (response) => {
+            reflectedHeader = response.headers.get('X-SomeHeader'); 
+            return response.text()
+        })
+        .then( (data) => {
+            const userDiv = document.createElement('div'); 
+            userDiv.innerHTML = reflectedHeader;
+            // body.append(userDiv); 
+            user.append(userDiv); 
+    
+            const outDiv = document.createElement('div'); 
+            outDiv.innerHTML = data;
+            console.log(data); 
+            body.append(outDiv); 
+        })
+        .catch ( (err) => {
+            console.log(err); 
+        })
+    } else {
+        fetch(url, {
+            method: 'POST',
+            body: `${bodyData}`,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then ( (response) => {
+            return response.json()
+        })
+        .then ( (data) => {
+            console.log('done!'); 
+        })
+        .catch ( (err) => {
+            console.log(err); 
+        })
+    }
 })
+    
