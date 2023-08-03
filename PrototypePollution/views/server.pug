@@ -1,0 +1,15 @@
+doctype html 
+html 
+    head 
+        title Prototype Pollution 
+        script(src="script2.js", defer) 
+    body 
+        div Server Side Prototype Pollution through FETCH using Request Body. 
+        br 
+        .fetchData 
+            //- input(type="text", name="headerName", id="headerName") 
+            label(for="bodyData") Body Data 
+            input(type="text", name="bodyData", id="bodyData") 
+        p Below Button Fetches data from API. 
+        br 
+        button POLLUTE  

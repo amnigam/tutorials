@@ -4,15 +4,22 @@ html
         title Prototype Pollution 
         script(src="script.js", defer) 
     body 
-        .user User Details 
-            User-Agent= ua 
-        .fetchData 
-            //- input(type="text", name="headerName", id="headerName") 
-            label(for="headerVal") Header Value 
+        div Prototype Pollution using FETCH (Client Side) 
+        br 
+        .user 
+        .fetchPollution  
+            label(for="pollutant") Pollutant Data  
+            input(type="text", name="pollutant", id="pollutant") 
+            br 
+        button.btn2 POLLUTE 
+        .fetchReflection 
+            label(for="headerVal") Header Value to Send  
             input(type="text", name="headerVal", id="headerVal") 
             br 
-            label(for="bodyData") Body Data 
-            input(type="text", name="bodyData", id="bodyData") 
+            p Header Retrieved by FETCH 
+            br 
+            .reflectedHeader 
+            br 
         p Below Button Fetches data from API. 
         br 
-        button FETCH 
+        button.btn1 FETCH 
