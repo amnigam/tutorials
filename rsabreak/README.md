@@ -26,4 +26,4 @@ This will get us inside the folder containing the python Flask application. You 
 
 > python3 app.py 
 
-And then you can try to access it on [localhost:3000] https://localhost:3000 
+And then you can try to access it on [localhost:3000] (https://localhost:3000)
