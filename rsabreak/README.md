@@ -16,14 +16,14 @@ And it allows ROOT access (SSH) to the container via the private key that has be
 
 You can spin up the container from the Dockerfile. 
 
-> docker build -t <appname> . 
+> docker build -t rsabreak . 
 
 Once it has been build, one can launch it. The application listens on port 8080 and so you will have to map it before launching.
 
-> docker run --rm -it -p 3000:8080 <appname> 
+> docker run --rm -it -p 3000:8080 rsabreak 
 
 This will get us inside the folder containing the python Flask application. You can run the application,
 
 > python3 app.py 
 
-And then you can try to access it on [localhost:3000] (https://localhost:3000)
+And then you can try to access it on [localhost:3000](https://localhost:3000)
