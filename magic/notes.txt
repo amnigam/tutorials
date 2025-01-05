@@ -1,0 +1,6 @@
+Rough notes and scratch pad. 
+
+e2 = Employee('Ippsec', 42, 'Red Teamer') 
+
+# Print sum of their ages by simply adding e1 & e2 objects.
+print(f'Sum of ages of {e1.name} and {e2.name} = {e1 + e2}')  
